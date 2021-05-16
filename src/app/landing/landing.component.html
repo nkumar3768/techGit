@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row">
+        <div class="card col-3 m-4 custom-card" *ngFor="let card of cards" >
+            <img src="https://firebasestorage.googleapis.com/v0/b/portfolio-897ca.appspot.com/o/Notes-files%2Fcover.png?alt=media&token=ed8b42df-5b01-4000-8400-59d980e9adc7" class="card-img-top mt-2" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{card.title}}</p>
+              <button  routerLink="{{card.path}}" class="btn btn-primary custom-btn">{{card.btnTitle}}<img src="https://firebasestorage.googleapis.com/v0/b/portfolio-897ca.appspot.com/o/common-img%2Farrow-right.svg?alt=media&token=41a48d37-642b-496b-a7fd-2343c6efe48a" alt="Arrow right" class="icon-right d-inline"></button>
+            </div>
+        </div>
+    </div>
+</div>

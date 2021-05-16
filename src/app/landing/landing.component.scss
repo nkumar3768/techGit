@@ -1,0 +1,22 @@
+.custom-btn{
+    background-color: #c40d42 !important;
+    border-color: #c40d42 !important;
+}
+
+.icon-right{
+    width: 17px;
+    max-width: 17px;
+    margin-left: .5rem;
+}
+
+.custom-btn:hover{
+    .icon-right{
+        transition: all .2s linear;
+        transform: translateX(0.3em);
+    }
+}
+
+.custom-card:hover{
+    box-shadow: 1px 8px 6px grey;
+    -webkit-transition:  box-shadow .6s ease-in;
+}

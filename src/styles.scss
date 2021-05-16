@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+.base-btn{
+    background: no-repeat padding-box #15c39a;
+    border: 2px solid #0b1951;
+    border-radius: 4px;
+    opacity: 1;
+    color: white;
+}
+
+.sub-base-btn{
+    background: none;
+    border: 0px;
+    border-radius: 4px;
+    opacity: 1;
+    color: rgb(96, 96, 96);
+    font-weight: 700;
+}
