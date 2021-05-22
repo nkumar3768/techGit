@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem
 } from "@angular/cdk/drag-drop";
+
+import { ToastrService} from 'ngx-toastr';
+
+import { NotesService} from '../services/notes.service';
 
 @Component({
   selector: 'app-notes',
@@ -13,7 +17,7 @@ import {
 })
 export class NotesComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private noteService: NotesService) {
     this.textAreaForm = fb.group({
       textArea: "Here is you first note."
     });
@@ -22,24 +26,53 @@ export class NotesComponent implements OnInit {
   noteFontSize:number = 21;
   noteColor:string = '#ffff88';
   public textAreaForm: FormGroup;
-    //items: Array<number> = Array.from({ length: 3 }, (v, k) => k + 1);
-    items: Array<any> = [{sno:1,title:"Add you title...", content:"Some content will go here........."}];
-    // two dimensional table matrix representing view model
+    items: Array<any> = [{sno:1, content:"Some content will go here.........",defFontSize:21}];
     itemsTable: Array<number[]>;
-  
-    // fix column width as defined in CSS (150px + 5px margin)
     boxWidth = 155;
-    // calculated based on dynamic row width
     columnSize: number;
   ngOnInit(): void {
+    this.noteService.readNotes().subscribe((res) =>{
+      if(res?.status === 'sucess'){
+        this.items = JSON.parse(res.result) ? JSON.parse(res.result) : this.items;
+        this.noteFontSize = this.items[0]['defFontSize'] ? this.items[0]['defFontSize']: 21 ; 
+        this.initTable();
+      }
+    },(error) =>{
+      this.toastr.error("Something went wrong!");
+    })
   }
-
-  
 
   addNotes(){
     const notesSize = this.items.length;
-    this.items.push({sno:notesSize+1});
+    if(notesSize === 6) return this.toastr.warning("Notes Exccedd, Delete to create new one.");
+    this.items.push({sno:notesSize+1,content:''});
     this.initTable();
+    this.toastr.success('Note Created!')
+  }
+
+  saveNote(){
+    if(this.items){
+      this.items[0]['defFontSize'] = this.noteFontSize;
+      this.noteService.saveNotes(this.items).subscribe((res)=>{
+        if(res?.status === 'sucess') this.toastr.success("Saved successfully.")
+      },(error) => {
+        this.toastr.error("Saved Failed!");
+      })
+    }
+  }
+
+  deleteNotes(noteNo: number){
+    this.items.forEach((obj, indx) =>{
+      if(obj.sno === noteNo) this.items.splice(indx, 1);
+    })
+    
+    this.noteService.saveNotes(this.items).subscribe((res)=>{
+      if(res?.status === 'sucess') this.toastr.success("Deleted successfully.")
+    },(error) => {
+      this.toastr.error("Not Deleted!");
+    })
+    this.initTable();
+    
   }
 
   changeFontSize(isTrue){
@@ -56,11 +89,9 @@ export class NotesComponent implements OnInit {
 
 
 
-  getItemsTable(rowLayout: Element): number[][] {
-    // calculate column size per row
+  getItemsTable(rowLayout): number[][] {
     const { width } = rowLayout.getBoundingClientRect();
     const columnSize = Math.round(width / this.boxWidth);
-    // view has been resized? => update table with new column size
     if (columnSize != this.columnSize) {
       this.columnSize = columnSize;
       this.initTable();
@@ -69,8 +100,6 @@ export class NotesComponent implements OnInit {
   }
 
   initTable() {
-    // create table rows based on input list
-    // example: [1,2,3,4,5,6] => [ [1,2,3], [4,5,6] ]
     this.itemsTable = this.items
       .filter((_, outerIndex) => outerIndex % this.columnSize == 0) // create outter list of rows
       .map((
@@ -93,7 +122,6 @@ export class NotesComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      // different rows? => transfer item from one to another list
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -102,15 +130,11 @@ export class NotesComponent implements OnInit {
       );
     }
 
-    // update items after drop: flatten matrix into list
-    // example: [ [1,2,3], [4,5,6] ] => [1,2,3,4,5,6]
     this.items = this.itemsTable.reduce(
       (previous, current) => previous.concat(current),
       []
     );
 
-    // re-initialize table - makes sure each row has same numbers of entries
-    // example: [ [1,2], [3,4,5,6] ] => [ [1,2,3], [4,5,6] ]
     this.initTable();
   }
 

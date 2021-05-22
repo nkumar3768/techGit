@@ -4,7 +4,7 @@
            <div class="col-4 main-action-btn">
             <span><i class="fa fa-plus" (click)="changeFontSize(true)" tooltip="Font Size" placement="top"></i></span>
             <span><i class="fa fa-minus" (click)="changeFontSize(false)" tooltip="Font Size" placement="top"></i></span>
-            <button class="btn base-btn btn-sm float-right" (click)="addNotes()"><i class="fa fa-check"></i> Save</button>
+            <button class="btn base-btn btn-sm float-right" (click)="saveNote()"><i class="fa fa-check"></i> Save</button>
             <button class="btn sub-base-btn btn-sm float-right" (click)="addNotes()"> New Notes</button>
             
                              
@@ -22,14 +22,14 @@
               [cdkDropListData]="itemsRow" (cdkDropListDropped)="reorderDroppedItem($event)">
               <!-- Component.reorderDroppedItem():
                    reorders table/view model, update input model, and resize table matrix-->
-              <div *ngFor="let item of itemsRow"  class="col-4" >
+              <div *ngFor="let item of itemsRow; let i = index"  class="col-4" >
                 <div class="drag-placeholder" *cdkDragPlaceholder></div>
                 <div class="action">
                     <ul class="d-flex">
-                        <li><i class="fa fa-trash" tooltip="Delete" placement="right"></i></li>
+                        <li><i class="fa fa-trash" tooltip="Delete" placement="right" (click)="deleteNotes(item.sno)" *ngIf="itemsRow.length > 1" ></i></li>
                     </ul>
                 </div>
-                <textarea [ngStyle]="{'font-size': noteFontSize+'px'}" class="w3review m-2 item-box" fxLayoutAlign="center center"  name="w3review" rows="4" cols="50" style="font-size:21px;" >{{ item.content }}Notes</textarea>
+                <textarea [ngStyle]="{'font-size': noteFontSize+'px'}" (input)="item.content = $event.target.value" class="w3review m-2 item-box" fxLayoutAlign="center center"  name="w3review" rows="4" cols="50" style="font-size:21px;" >{{ item.content }}</textarea>
               </div>
             </div>
           </div>

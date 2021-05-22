@@ -6,6 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,13 +26,18 @@ import { LandingComponent } from './landing/landing.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     DragDropModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TooltipModule
+    TooltipModule,
+    ToastrModule.forRoot({
+      timeOut:2000,
+      preventDuplicates: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
