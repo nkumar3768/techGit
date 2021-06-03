@@ -1,6 +1,6 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
-        <div class="card col-3 m-4 custom-card" *ngFor="let card of cards" >
+        <div class="card col-md-6 col-sm-6 col-lg-3 m-4 custom-card" *ngFor="let card of cards" >
             <img src="https://firebasestorage.googleapis.com/v0/b/portfolio-897ca.appspot.com/o/Notes-files%2Fcover.png?alt=media&token=ed8b42df-5b01-4000-8400-59d980e9adc7" class="card-img-top mt-2" alt="...">
             <div class="card-body">
               <p class="card-text">{{card.title}}</p>
@@ -8,4 +8,67 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<div class="grid-container">
+    <div class="sidebar">
+        <div class="row brand">
+            <img src="https://firebasestorage.googleapis.com/v0/b/portfolio-897ca.appspot.com/o/common-img%2Faxiata-logo-social-distancing-light.svg?alt=media&token=5e6d6837-08ba-42d3-9579-c373aa172ec1" alt="">
+        </div>
+        <hr/>
+        <div class="app-user mt-4 row">
+            <div class="app-user-photo col-md-3">
+                <img src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png" alt="">
+            </div>
+            <div class="app-user-info col-md-9 pl-5 dynamicView">
+                <p class="app-user-name" style="font-weight: bold;font-weight: 15px;">Watson Joyce</p>
+                <p class="app-user-name">Administrator</p>
+                <p class="app-user-name"><i class="fa fa-circle"></i>Online</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback dynamicView"></span>
+            <input type="text" class="form-control search-box" placeholder="Search..">
+        </div>
+        <hr/>
+        <mat-accordion class="accordion">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style=" font-size: 18px; "><i class="fa fa-address-card" style=" font-size: 1.5rem; margin-right: 10px;"></i><span class="dynamicView">Dashboard</span></span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="menu row" [ngStyle]="{'margin-left':!isCollapsed  ? '55px' : '0px' }">
+              <ul>
+                  <li><a href="#">Admin</a></li>
+                  <li><a href="#">Customer</a></li>
+                  <li><a href="#">ISV User</a></li>
+              </ul>
+          </div> 
+          </mat-expansion-panel>
+          <hr/>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style=" font-size: 18px; "><i class="fa fa-rocket" style=" font-size: 1.5rem; margin-right: 10px;"></i><span class="dynamicView">Applications</span></span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="menu row" [ngStyle]="{'margin-left':!isCollapsed  ? '55px' : '0px' }">
+              <ul>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Instagram</a></li>
+                  <li><a href="#">Telegram</a></li>  
+              </ul>
+          </div> 
+          </mat-expansion-panel>
+        </mat-accordion>
+        
+      <button (click)="btnClick()" ><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="main-content">
+      <h1>Here is the demo.</h1>
+    </div>
+  </div>

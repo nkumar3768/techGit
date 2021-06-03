@@ -8,7 +8,8 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import {DemoMaterialModule} from './material-module';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,13 +17,15 @@ import { AppComponent } from './app.component';
 import { NotesComponent } from './notes/notes.component';
 import { HeaderComponent } from './header/header.component';
 import { LandingComponent } from './landing/landing.component';
+import { UserSignInComponent } from './user-sign-in/user-sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
     HeaderComponent,
-    LandingComponent
+    LandingComponent,
+    UserSignInComponent
   ],
   imports: [
     BrowserModule,
@@ -34,12 +37,15 @@ import { LandingComponent } from './landing/landing.component';
     FormsModule,
     ReactiveFormsModule,
     TooltipModule,
+    DemoMaterialModule,
+    MatExpansionModule,
     ToastrModule.forRoot({
       timeOut:2000,
       preventDuplicates: true
     }),
   ],
   providers: [],
+  exports: [MatExpansionModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

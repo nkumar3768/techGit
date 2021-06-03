@@ -1,22 +1,209 @@
-.custom-btn{
-    background-color: #c40d42 !important;
-    border-color: #c40d42 !important;
+// .custom-btn{
+//     background-color: #c40d42 !important;
+//     border-color: #c40d42 !important;
+// }
+
+// .icon-right{
+//     width: 17px;
+//     max-width: 17px;
+//     margin-left: .5rem;
+// }
+
+// .custom-btn:hover{
+//     .icon-right{
+//         transition: all .2s linear;
+//         transform: translateX(0.3em);
+//     }
+// }
+
+// .custom-card:hover{
+//     box-shadow: 1px 8px 6px grey;
+//     -webkit-transition:  box-shadow .6s ease-in;
+// }   
+
+
+.dynamicViewAn
+{
+    display: none !important;
+    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    -moz-animation: fadeInFromNone 0.5s ease-out;
+    -o-animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out;
 }
 
-.icon-right{
-    width: 17px;
-    max-width: 17px;
-    margin-left: .5rem;
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        display: block;
+        opacity: 1;
+    }
+
+    1% {
+        display: block;
+        opacity: 0.5;
+    }
+
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+.grid-container {
+    margin: 0 auto;
+    height: 92vh;
+    display: flex;
+    transition: 1s ease;
+  }
+  
+  .sidebar {
+    width: 16%;
+    height: 100%;
+    background-color: #242939;
+    transition: 0s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    color: #989eb3;
+  }
+  
+  .main-content {
+    width: 80%;
+    height: 100%;
+    padding-left:40px;
+    background-color: rgb(255, 255, 255);
+    transition: 1s ease;
+  }
+  
+  .main-content_large {
+    width: 90%;
+  }
+  
+  .sidebar_small {
+    width: 8%;
+  }
+  
+  button {
+    position: absolute;
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 4px 1px rgba(0 ,0, 0, .3);
+    left: 100%;
+    top: 2rem;
+    transform: translateX(-50%);
+    cursor: pointer;
+  }
+
+
+  // Inside the nav bar
+
+  .brand img {
+    height: 39px;
+    width: 100%;
+}
+hr{
+    border-top: 1px solid rgb(232 232 232 / 10%) !important;
 }
 
-.custom-btn:hover{
-    .icon-right{
-        transition: all .2s linear;
-        transform: translateX(0.3em);
+.text-20 {
+    font-size: 20px!important;
+}
+
+.brand .app-logo-text {
+    color: #fff!important;
+    font-weight: 600;
+}
+
+.app-user {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    color: #fff!important;
+    font-family: Poppins;
+    font-size: 13px;
+    img {
+        width: 77px;
+        border-radius: 5%;
+        margin-right: 8px;
+    }
+    .app-user-name {
+        display: block;
+        font-weight: 300;
+        margin-bottom: 0px;
+    }
+    .fa-circle{
+        font-size: 12px;
+        margin-right: 9px;
+        color: green;
     }
 }
 
-.custom-card:hover{
-    box-shadow: 1px 8px 6px grey;
-    -webkit-transition:  box-shadow .6s ease-in;
+.form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    float: right;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #fff;
+    right: 28px;
 }
+
+.search-box{
+    padding-right: 2rem;
+    background: #7d7d7d;
+    border: 0px;
+   
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color:#fff;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color:#fff;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color:#fff;
+  }
+
+  .menu {
+    width: 100px;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+ul li a {
+    display:block;
+    padding: 5px 15px;
+    color: #999;
+
+}
+ul li:first-child {
+    border: none;
+}
+ul li a:hover {
+    color: #fff;
+
+}
+@media only screen 
+and (max-width : 600px) {
+    .menu {
+        width: 40px;
+        height: 40px;
+        background: #08c9a2 url('http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/32x32/list_bullets.png') no-repeat scroll 50% 50%;
+    }
+  }
+
+  .accordion span:hover{
+    color: #fff;
+  }
+
+  .mat-expanded{
+    color: #fff;
+  }
